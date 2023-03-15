@@ -19,8 +19,8 @@ public class SkillController {
     @Autowired
     private SkillRepository skillRepository;
 
-    @GetMapping
-    public String displayAllSkills(Model model) {
+    @GetMapping("")
+    public String index(Model model) {
         model.addAttribute("skills", skillRepository.findAll());
         return "index";
     }
@@ -38,6 +38,8 @@ public class SkillController {
         if (errors.hasErrors()) {
             return "skills/add";
         }
+
+        skillRepository.save(newSkill);
 
         return "redirect:";
     }
